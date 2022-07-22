@@ -19,34 +19,51 @@ const distancia = (a,b) => {
     return Math.sqrt(Math.pow(b.x - a.x) + Math.pow(b.y - a.y ))
 }
 
-setInterval(() => {
-
-    // si la posicion X de la particula es mayor al del mouse
-    if (sparkPos.x > (mouse.x - 25)) {
-        sparkPos.x = sparkPos.x - vel
+window.addEventListener('keydown', (data) => {
+    if (data.key === "Control") {
+        teclaMaestra = true
+        
+    }
+})
+window.addEventListener('keyup', (data) => {
+    if (data.key === 'Control') {
+        teclaMaestra = false
         
     }
 
-    // si la posicion Y de la particula es mayor al del mouse
-    if (sparkPos.y > (mouse.y - 25)) {
-        sparkPos.y = sparkPos.y - vel
+})
+
+setInterval(() => {
+
+    if (teclaMaestra) {
+        // si la posicion X de la particula es mayor al del mouse
+        if (x > (mouseX - 25)) {
+            x = x - vel
+            
+        }
+    
+        // si la posicion Y de la particula es mayor al del mouse
+        if (y > (mouseY - 25)) {
+            y = y - vel
+        }
+    
+        // si la posicion X de la particula es menor al del mouse
+        if (x < (mouseX -25)) {
+            x = x + vel
+        }
+    
+        // su la posicion Y de la particula es menor al del mouse
+        if (y < (mouseY -25)) {
+            y = y + vel
+        }
+        spark.style.top = `${y}px`
+        spark.style.left = `${x}px`
+        console.log(`distancia: ${distancia(sparkPos, mouse)}`);
     }
 
-    // si la posicion X de la particula es menor al del mouse
-    if (sparkPos.x < (mouse.x -25)) {
-        sparkPos.x = sparkPos.x + vel
-    }
-
-    // su la posicion Y de la particula es menor al del mouse
-    if (sparkPos.y < (mouse.y -25)) {
-        sparkPos.y = sparkPos.y + vel
-    }
     
     
-    console.log(`distancia: ${distancia(sparkPos, mouse)}`);
     
-    spark.style.top = `${sparkPos.y}px`
-    spark.style.left = `${sparkPos.x}px`
     
 }, 1 )
 
