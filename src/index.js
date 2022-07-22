@@ -4,6 +4,7 @@ let x = spark.offsetLeft
 let y = spark.offsetTop
 let mouseX = 0
 let mouseY = 0
+let vel = 1
 
 window.addEventListener('mousemove', (data) => {
     mouseX = data.clientX
@@ -18,23 +19,23 @@ setInterval(() => {
 
     // si la posicion X de la particula es mayor al del mouse
     if (x > (mouseX - 25)) {
-        x = x - 7
+        x = x - vel
         
     }
 
     // si la posicion Y de la particula es mayor al del mouse
     if (y > (mouseY - 25)) {
-        y = y - 7
+        y = y - vel
     }
 
     // si la posicion X de la particula es menor al del mouse
     if (x < (mouseX -25)) {
-        x = x + 7
+        x = x + vel
     }
 
     // su la posicion Y de la particula es menor al del mouse
     if (y < (mouseY -25)) {
-        y = y + 7
+        y = y + vel
     }
     
     
