@@ -16,7 +16,7 @@ window.addEventListener('mousemove', (data) => {
 let teclaMaestra = false
 
 const distancia = (a,b) => {
-
+    return Math.sqrt(Math.pow(b.x - a.x) + Math.pow(b.y - a.y ))
 }
 
 setInterval(() => {
@@ -43,11 +43,11 @@ setInterval(() => {
     }
     
     
-    
+    console.log(`distancia: ${distancia(sparkPos, mouse)}`);
     
     spark.style.top = `${sparkPos.y}px`
     spark.style.left = `${sparkPos.x}px`
-    console.log(`mouse-posX: ${mouse.x} mouse-posY: ${mouse.x} spark-posX: ${sparkPos.x} spark-posY ${sparkPos.y}`);
+    
 }, 1 )
 
 /* document.onmousemove = (data) => {
