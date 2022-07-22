@@ -1,49 +1,53 @@
 const spark = document.querySelector('.spark__container')
 
-let x = spark.offsetLeft
-let y = spark.offsetTop
-let mouseX = 0
-let mouseY = 0
+const mouse = {x: 0, y:0};
+const sparkPos = {x: 0, y:0}
+sparkPos.x = spark.offsetLeft
+sparkPos.y = spark.offsetTop
 let vel = 1
 
 window.addEventListener('mousemove', (data) => {
-    mouseX = data.clientX
-    mouseY = data.clientY
+    mouse.x = data.clientX
+    mouse.y = data.clientY
     
 })
 
 
 let teclaMaestra = false
 
+const distancia = (a,b) => {
+
+}
+
 setInterval(() => {
 
     // si la posicion X de la particula es mayor al del mouse
-    if (x > (mouseX - 25)) {
-        x = x - vel
+    if (sparkPos.x > (mouse.x - 25)) {
+        sparkPos.x = sparkPos.x - vel
         
     }
 
     // si la posicion Y de la particula es mayor al del mouse
-    if (y > (mouseY - 25)) {
-        y = y - vel
+    if (sparkPos.y > (mouse.y - 25)) {
+        sparkPos.y = sparkPos.y - vel
     }
 
     // si la posicion X de la particula es menor al del mouse
-    if (x < (mouseX -25)) {
-        x = x + vel
+    if (sparkPos.x < (mouse.x -25)) {
+        sparkPos.x = sparkPos.x + vel
     }
 
     // su la posicion Y de la particula es menor al del mouse
-    if (y < (mouseY -25)) {
-        y = y + vel
+    if (sparkPos.y < (mouse.y -25)) {
+        sparkPos.y = sparkPos.y + vel
     }
     
     
     
     
-    spark.style.top = `${y}px`
-    spark.style.left = `${x}px`
-    console.log(`mouse-posX: ${mouseX} mouse-posY: ${mouseY} spark-posX: ${x} spark-posY ${y}`);
+    spark.style.top = `${sparkPos.y}px`
+    spark.style.left = `${sparkPos.x}px`
+    console.log(`mouse-posX: ${mouse.x} mouse-posY: ${mouse.x} spark-posX: ${sparkPos.x} spark-posY ${sparkPos.y}`);
 }, 1 )
 
 /* document.onmousemove = (data) => {
