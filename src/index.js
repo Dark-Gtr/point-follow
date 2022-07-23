@@ -6,11 +6,21 @@ sparkPos.x = spark.offsetLeft
 sparkPos.y = spark.offsetTop
 let vel = 4
 
-window.addEventListener('mousemove', (data) => {
-    mouse.x = data.clientX
-    mouse.y = data.clientY
-    
-})
+
+
+if (document.querySelector("body").clientWidth < 1024) {
+    window.addEventListener('touchmove', (data) => {
+        mouse.x = data.touches[0].clientX
+        mouse.y = data.touches[0].clientY
+    })
+} else {
+    window.addEventListener('mousemove', (data) => {
+        mouse.x = data.clientX
+        mouse.y = data.clientY
+    })
+}
+
+
 
 
 let teclaMaestra = false
@@ -33,15 +43,31 @@ window.addEventListener('keyup', (data) => {
 
 })
 
+
 setInterval(() => {
 
-    if (teclaMaestra) {        
+
+    if (teclaMaestra && document.querySelector("body").clientWidth > 1024) {    
+        
         sparkPos.x = sparkPos.x + (( mouse.x - sparkPos.x) / (distancia(sparkPos, mouse)/ vel))
         sparkPos.y = sparkPos.y + (( mouse.y - sparkPos.y) / (distancia(sparkPos, mouse)/ vel))
         spark.style.top = `${sparkPos.y - 25}px`
         spark.style.left = `${sparkPos.x - 25}px`
-        console.log(`distancia: ${(mouse.x - sparkPos.x) / distancia(sparkPos, mouse)}`);
+        //console.log(`sparkPosx: ${sparkPos.x + 2} --- mousePosx:${mouse.x}`);
     }
+    if (document.querySelector("body").clientWidth < 1024) {
+        sparkPos.x = sparkPos.x + (( mouse.x - sparkPos.x) / (distancia(sparkPos, mouse)/ vel))
+        sparkPos.y = sparkPos.y + (( mouse.y - sparkPos.y) / (distancia(sparkPos, mouse)/ vel))
+        spark.style.top = `${sparkPos.y - 25}px`
+        spark.style.left = `${sparkPos.x - 25}px`
+        
+    }
+
+    
+    
+
+    
+
 
     
     
